@@ -1,0 +1,21 @@
+{
+  "name": "justdoit",
+  "version": "1.0.0",
+  "description": "JustDoIt created by Patryk 'UltiPro' Wójtowicz using TypeScript and Webpack.",
+  "main": "./dist/bundle.main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server",
+    "build": "webpack --config webpack.config.prod.js"
+  },
+  "author": "Patryk 'UltiPro' Wójtowicz",
+  "license": "ISC",
+  "devDependencies": {
+    "clean-webpack-plugin": "^4.0.0",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.4.5",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.0.4"
+  }
+}
