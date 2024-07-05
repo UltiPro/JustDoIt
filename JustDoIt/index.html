@@ -5,13 +5,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JustDoIt</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
+    <template id="todo-item-template">
+        <div class="todo-item">
+            <img class="todo-item-icon">
+            <div class="todo-item-details">
+                <h3 class="todo-item-details_title">Title</h3>
+                <p class="todo-item-details_description">Description</p>
+            </div>
+            <div class="todo-item-actions">
+                <button class="edit-btn">Edit</button>
+                <button class="delete-btn">Delete</button>
+            </div>
+        </div>
+    </template>
+
+    <div id="todo-container"></div>
+
+    <button id="add-btn">Add Task</button>
+
+    <div id="modal">
+        <div class="modal-content">
+            <span id="close-btn">&times;</span>
+            <h2>New Task</h2>
+            <br />
+            <form id="todo-form">
+                <div class="form-group">
+                    <input type="input" class="form-group-field" placeholder="Title" id="todo-form-title" minlength="3"
+                        maxlength="64" required />
+                    <label for="todo-form-title" class="form-group-label">Title</label>
+                </div>
+                <div class="form-group">
+                    <input type="input" class="form-group-field" placeholder="Description" id="todo-form-description"
+                        minlength="1" maxlength="256" required />
+                    <label for="todo-form-description" class="form-group-label">Description</label>
+                </div>
+                <div class="form-icon-options">
+                    <input type="radio" id="todo-form-icon-other" name="todo-form-icon" value="other.png" checked
+                        required>
+                    <label for="todo-form-icon-other"><img src="./img/other.png" alt="other.png"></label>
+
+                    <input type="radio" id="todo-form-icon-1" name="todo-form-icon" value="1.png">
+                    <label for="todo-form-icon-1"><img src="./img/1.png" alt="1.png"></label>
+
+                    <input type="radio" id="todo-form-icon-2" name="todo-form-icon" value="2.png">
+                    <label for="todo-form-icon-2"><img src="./img/2.png" alt="2.png"></label>
+
+                    <input type="radio" id="todo-form-icon-3" name="todo-form-icon" value="3.png">
+                    <label for="todo-form-icon-3"><img src="./img/3.png" alt="3.png"></label>
+
+                    <input type="radio" id="todo-form-icon-4" name="todo-form-icon" value="4.png">
+                    <label for="todo-form-icon-4"><img src="./img/4.png" alt="4.png"></label>
+                </div>
+                <button type="submit">Dodaj</button>
+            </form>
+        </div>
+    </div>
 
 </body>
-<script type="module" src="./dist/bundle.main.js"></script>
-<!-- Development: <script type="module" src="./out/bundle.js"></script> -->
+<script type="module" src="./out/bundle.js"></script>
 
 </html>
