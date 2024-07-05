@@ -59,29 +59,29 @@ button {
     box-shadow: 0 0 10px var(--box-shadow);
 }
 
-.todo-icon {
+.todo-item-icon {
     width: 50px;
     height: 50px;
     margin-right: 10px;
 }
 
-.todo-details {
+.todo-item-details {
     flex-grow: 1;
     margin-right: 10px;
     word-wrap: break-word;
     overflow: hidden;
 }
 
-.todo-title {
+.todo-item-details_title {
     font-size: 1.3em;
 }
 
-.todo-description {
+.todo-item-details_description {
     margin-top: 5px;
     color: var(--grey);
 }
 
-.todo-actions {
+.todo-item-actions {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -89,7 +89,7 @@ button {
     max-width: 75px;
 }
 
-.todo-actions button {
+.todo-item-actions button {
     width: 75px;
     border-radius: 3px;
 }
@@ -160,14 +160,14 @@ button {
     color: var(--black);
 }
 
-.form__group {
+.form-group {
     position: relative;
     width: 100%;
     padding: 15px 0 0;
     margin-bottom: 10px;
 }
 
-.form__field {
+.form-group-field {
     width: 100%;
     padding: 7px 0;
     color: var(--grey-light);
@@ -179,17 +179,17 @@ button {
     transition: border-color .2s linear;
 }
 
-.form__field::placeholder {
+.form-group-field::placeholder {
     color: transparent;
 }
 
-.form__field:placeholder-shown~.form__label {
+.form-group-field:placeholder-shown~.form-group-label {
     top: 20px;
     font-size: 1.3rem;
     cursor: text;
 }
 
-.form__label {
+.form-group-label {
     display: block;
     position: absolute;
     top: 0;
@@ -198,25 +198,25 @@ button {
     transition: .2s;
 }
 
-.form__field:focus {
+.form-group-field:focus {
     padding-bottom: 6px;
     border-width: 3px;
     border-image: linear-gradient(to right, var(--blue), var(--green));
     border-image-slice: 1;
 }
 
-.form__field:focus~.form__label {
+.form-group-field:focus~.form-group-label {
     position: absolute;
     top: 0;
     color: var(--blue);
     transition: .2s;
 }
 
-.icon-options input[type="radio"] {
+.form-icon-options input[type="radio"] {
     display: none;
 }
 
-.icon-options img {
+.form-icon-options img {
     width: 60px;
     height: 60px;
     margin: 5px;
@@ -227,7 +227,7 @@ button {
     transition: all .1s linear;
 }
 
-.icon-options input[type="radio"]:checked+label img {
+.form-icon-options input[type="radio"]:checked+label img {
     padding: 7px;
     border-color: var(--blue);
 }
