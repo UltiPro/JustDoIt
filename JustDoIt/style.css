@@ -43,7 +43,12 @@ button {
     transition: all .2s ease-in-out;
 }
 
-.todo-container {
+form button {
+    margin-top: 5px;
+}
+
+#todo-container {
+    width: 100%;
     max-width: 600px;
     margin: 20px auto 50px auto;
     flex: 1;
@@ -110,7 +115,7 @@ button {
     background-color: var(--red-light);
 }
 
-.add-btn {
+#add-btn {
     position: fixed;
     bottom: 0;
     left: 50%;
@@ -121,11 +126,11 @@ button {
     border-radius: 5px;
 }
 
-.add-btn:hover {
+#add-btn:hover {
     background-color: var(--blue-light);
 }
 
-.modal {
+#modal {
     display: none;
     position: fixed;
     left: 0;
@@ -146,7 +151,7 @@ button {
     box-shadow: -20px -20px 3px var(--box-shadow-dark);
 }
 
-.close-btn {
+#close-btn {
     float: right;
     color: var(--grey-light);
     font-size: 40px;
@@ -155,8 +160,8 @@ button {
     transform: translateY(-8px);
 }
 
-.close-btn:hover,
-.close-btn:focus {
+#close-btn:hover,
+#close-btn:focus {
     color: var(--black);
 }
 
@@ -169,12 +174,12 @@ button {
 
 .form-group-field {
     width: 100%;
-    padding: 7px 0;
+    padding: 7px 0 6px 0;
     color: var(--grey-light);
     font-size: 1.3rem;
     font-weight: bold;
     border: 0;
-    border-bottom: 2px solid var(--grey-light);
+    border-bottom: 3px solid var(--grey-light);
     outline: 0;
     transition: border-color .2s linear;
 }
@@ -187,6 +192,14 @@ button {
     top: 20px;
     font-size: 1.3rem;
     cursor: text;
+}
+
+.form-group-field:required:valid {
+    border-color: var(--green);
+}
+
+.form-group-field:required:invalid {
+    border-color: var(--red);
 }
 
 .form-group-label {
@@ -219,7 +232,7 @@ button {
 .form-icon-options img {
     width: 60px;
     height: 60px;
-    margin: 5px;
+    margin: 5px 5px 5px 0;
     padding: 10px;
     cursor: pointer;
     border: 2px solid transparent;
