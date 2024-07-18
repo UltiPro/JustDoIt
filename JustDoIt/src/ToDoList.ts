@@ -16,10 +16,26 @@ export default class ToDoList implements IStorage<ToDoItem> {
     }
 
     public Save(): void {
-
+        throw new Error("Method not implemented.");
     }
 
     public Load(): ToDoItem[] {
-        return [];
+        throw new Error("Method not implemented.");
     }
-}
+
+    public Clear(): void {
+        throw new Error("Method not implemented.");
+    }
+
+    public Add(obj: ToDoItem): boolean {
+        throw new Error("Method not implemented.");
+    }
+
+    public Edit(obj: ToDoItem): boolean {
+        throw new Error("Method not implemented.");
+    }
+
+    public Delete(id: number): boolean {
+        throw new Error("Method not implemented.");
+    }
+};
