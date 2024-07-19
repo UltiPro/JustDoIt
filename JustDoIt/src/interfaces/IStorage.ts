@@ -1,6 +1,6 @@
 export default interface IStorage<T extends object> {
     Save(): void;
-    Load(): T[];
+    Load(): void;
     Clear(): void;
     Add(obj: T): void;
     Edit(obj: T): void;
