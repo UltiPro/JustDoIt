@@ -52,4 +52,4 @@ export async function EditForm(): Promise<FormData | null> {
         }, { once: true });
         toDoModal.style.display = "block";
     });
-};
+}
