@@ -5,4 +5,4 @@ export default interface IStorage<T extends object> {
     Add(obj: T): void;
     Edit(id: number, ...args: any[]): void;
     Delete(id: number): void;
-};
+}
