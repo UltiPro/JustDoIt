@@ -29,7 +29,7 @@ export default function BuildToDoItem(id: number) {
                     const description: string = formData.get("todo-form-description")! as string;
                     const toDoType: ToDoType = +formData.get("todo-form-icon")! as ToDoType;
                     ToDoList.Instance.Edit(id, title, description, toDoType);
-                    this.SetData(toDoType ?? null, title ?? null, description ?? null);
+                    this.SetData(toDoType, title, description);
                 });
 
                 (clonedDiv.querySelector(".delete-btn")! as HTMLButtonElement).addEventListener("click", (): void => {
@@ -48,4 +48,4 @@ export default function BuildToDoItem(id: number) {
             }
         };
     };
-};
+}
