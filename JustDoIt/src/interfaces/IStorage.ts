@@ -3,6 +3,6 @@ export default interface IStorage<T extends object> {
     Load(): void;
     Clear(): void;
     Add(obj: T): void;
-    Edit(obj: T): void;
+    Edit(id: number, obj: T): void;
     Delete(id: number): void;
 };
