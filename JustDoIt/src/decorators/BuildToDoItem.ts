@@ -1,4 +1,4 @@
-import ToDoList from "../ToDoList";
+import ToDoList from "../models/ToDoList";
 import { ToDoType } from "../enums/ToDoType";
 import IIndexable from "../interfaces/IIndexable";
 import { EditForm } from "../utils/FormModal";
