@@ -1,4 +1,4 @@
-import ToDoList from "../ToDoList";
+import ToDoList from "../models/ToDoList";
 import ToDoItem from "../models/ToDoItem";
 import { ToDoType } from "../enums/ToDoType";
 
