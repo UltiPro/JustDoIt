@@ -1,25 +1,28 @@
 import ToDoList from "../ToDoList";
 import { ToDoType } from "../enums/ToDoType";
+import Iindexable from "../interfaces/Iindexable";
 import { EditForm } from "../utils/FormModal";
 
 const toDoContainer: HTMLDivElement = document.getElementById("todo-container")! as HTMLDivElement;
 const toDoItemTemplate: HTMLTemplateElement = document.getElementById("todo-item-template")! as HTMLTemplateElement;
 
-export default function BuildToDoItem(id: number) {
+export default function BuildToDoItem() {
     return function <T extends { new(...args: any[]): {} }>(originalConstructor: T) {
-        return class extends originalConstructor {
+        return class extends originalConstructor implements Iindexable {
             private _: HTMLDivElement;
-            private _image: HTMLImageElement;
-            private _title: HTMLHeadingElement;
-            private _description: HTMLParagraphElement;
+            private _imageElement: HTMLImageElement;
+            private _titleElement: HTMLHeadingElement;
+            private _descriptionElement: HTMLParagraphElement;
+            _id: number;
 
             constructor(...args: any[]) {
                 super();
 
                 const clonedDiv: DocumentFragment = toDoItemTemplate.content.cloneNode(true) as DocumentFragment;
-                this._image = clonedDiv.querySelector(".todo-item-icon")! as HTMLImageElement;
-                this._title = clonedDiv.querySelector(".todo-item-details_title")! as HTMLHeadingElement;
-                this._description = clonedDiv.querySelector(".todo-item-details_description")! as HTMLParagraphElement;
+                this._id = ToDoList.Instance.LastId();
+                this._imageElement = clonedDiv.querySelector(".todo-item-icon")! as HTMLImageElement;
+                this._titleElement = clonedDiv.querySelector(".todo-item-details_title")! as HTMLHeadingElement;
+                this._descriptionElement = clonedDiv.querySelector(".todo-item-details_description")! as HTMLParagraphElement;
                 this.SetData(args[2], args[0], args[1]);
 
                 (clonedDiv.querySelector(".edit-btn")! as HTMLButtonElement).addEventListener("click", async (): Promise<void> => {
@@ -28,12 +31,12 @@ export default function BuildToDoItem(id: number) {
                     const title: string = formData.get("todo-form-title")! as string;
                     const description: string = formData.get("todo-form-description")! as string;
                     const toDoType: ToDoType = +formData.get("todo-form-icon")! as ToDoType;
-                    ToDoList.Instance.Edit(id, title, description, toDoType);
+                    ToDoList.Instance.Edit(this._id, title, description, toDoType);
                     this.SetData(toDoType, title, description);
                 });
 
                 (clonedDiv.querySelector(".delete-btn")! as HTMLButtonElement).addEventListener("click", (): void => {
-                    ToDoList.Instance.Delete(id);
+                    ToDoList.Instance.Delete(this._id);
                     toDoContainer.removeChild(this._);
                 });
 
@@ -42,9 +45,9 @@ export default function BuildToDoItem(id: number) {
             }
 
             private SetData(img?: number, title?: string, description?: string): void {
-                if (img) this._image.src = `./../../img/${img}.png`;
-                if (title) this._title.textContent = title;
-                if (description) this._description.textContent = description;
+                if (img || img === 0) this._imageElement.src = `./../../img/${img}.png`;
+                if (title) this._titleElement.textContent = title;
+                if (description) this._descriptionElement.textContent = description;
             }
         };
     };
