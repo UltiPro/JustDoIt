@@ -1,6 +1,6 @@
 import BuildToDoItem from "../decorators/BuildToDoItem";
 import IIndexable from "../interfaces/IIndexable";
-import ToDoList from "../ToDoList";
+import ToDoList from "./ToDoList";
 import { ToDoType } from "../enums/ToDoType";
 
 @BuildToDoItem()
