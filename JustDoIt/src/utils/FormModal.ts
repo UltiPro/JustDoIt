@@ -5,20 +5,21 @@ import { ToDoType } from "../enums/ToDoType";
 const toDoModal = document.getElementById("modal")! as HTMLDivElement;
 const toDoForm = document.getElementById("todo-form")! as HTMLFormElement;
 
-const toDoForm_h2: HTMLHeadingElement = toDoModal.querySelector("h2") as HTMLHeadingElement;
-const toDoForm_button: HTMLButtonElement = toDoForm.querySelector("button") as HTMLButtonElement;
+const toDoForm_h2: HTMLHeadingElement = toDoModal.querySelector("h2")! as HTMLHeadingElement;
+const toDoForm_button: HTMLButtonElement = toDoForm.querySelector("button")! as HTMLButtonElement;
 
 export function InitFormModal(): void {
     (document.getElementById("add-btn")! as HTMLButtonElement).addEventListener("click", (): void => {
         toDoForm_h2.textContent = "New Task";
         toDoForm_button.textContent = "Add";
         toDoForm.addEventListener("submit", Add);
+        toDoForm.reset();
         toDoModal.style.display = "block";
     });
 
     (document.getElementById("close-btn")! as HTMLButtonElement).addEventListener("click", (): string => toDoModal.style.display = "none");
 
-    window.addEventListener("click", (e: Event): void => {
+    window.addEventListener("dblclick", (e: Event): void => {
         if (e.target == toDoModal) toDoModal.style.display = "none";
     });
 }
@@ -50,6 +51,7 @@ export async function EditForm(): Promise<FormData | null> {
                 toDoModal.style.display = 'none';
             }
         }, { once: true });
+        toDoForm.reset();
         toDoModal.style.display = "block";
     });
 }
