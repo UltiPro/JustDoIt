@@ -1,6 +1,6 @@
 import ToDoList from "../ToDoList";
 import { ToDoType } from "../enums/ToDoType";
-import Iindexable from "../interfaces/Iindexable";
+import IIndexable from "../interfaces/IIndexable";
 import { EditForm } from "../utils/FormModal";
 
 const toDoContainer: HTMLDivElement = document.getElementById("todo-container")! as HTMLDivElement;
@@ -8,7 +8,7 @@ const toDoItemTemplate: HTMLTemplateElement = document.getElementById("todo-item
 
 export default function BuildToDoItem() {
     return function <T extends { new(...args: any[]): {} }>(originalConstructor: T) {
-        return class extends originalConstructor implements Iindexable {
+        return class extends originalConstructor implements IIndexable {
             private _: HTMLDivElement;
             private _imageElement: HTMLImageElement;
             private _titleElement: HTMLHeadingElement;
