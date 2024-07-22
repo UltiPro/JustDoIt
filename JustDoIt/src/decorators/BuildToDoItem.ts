@@ -16,10 +16,10 @@ export default function BuildToDoItem() {
             _id: number;
 
             constructor(...args: any[]) {
-                super();
+                super(...args);
 
                 const clonedDiv: DocumentFragment = toDoItemTemplate.content.cloneNode(true) as DocumentFragment;
-                this._id = ToDoList.Instance.GenerateId();
+                this._id = args[3] ?? ToDoList.Instance.GenerateId();
                 this._imageElement = clonedDiv.querySelector(".todo-item-icon")! as HTMLImageElement;
                 this._titleElement = clonedDiv.querySelector(".todo-item-details_title")! as HTMLHeadingElement;
                 this._descriptionElement = clonedDiv.querySelector(".todo-item-details_description")! as HTMLParagraphElement;
