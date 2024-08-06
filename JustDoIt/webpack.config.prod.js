@@ -42,6 +42,15 @@ module.exports = {
         extensions: ['.ts', '.js']
     },
     plugins: [
+        new HtmlWebpackPlugin({
+            template: "./index.html",
+            filename: "bundle.[fullhash].html",
+            minify: {
+                removeAttributeQuotes: true,
+                collapseWhitespace: true,
+                removeComments: true
+            }
+        }),
         new MiniCssExtractPlugin({
             filename: "bundle.[fullhash].css"
         }),
