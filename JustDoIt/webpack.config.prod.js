@@ -8,7 +8,7 @@ module.exports = {
     mode: 'production',
     entry: './src/app.ts',
     output: {
-        filename: 'bundle.[fullhash].js',
+        filename: 'main.js',
         path: path.resolve(__dirname, 'dist')
     },
     optimization: {
@@ -45,7 +45,7 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: "./index.html",
-            filename: "bundle.[fullhash].html",
+            filename: "index.html",
             minify: {
                 removeAttributeQuotes: true,
                 collapseWhitespace: true,
@@ -53,7 +53,7 @@ module.exports = {
             }
         }),
         new MiniCssExtractPlugin({
-            filename: "bundle.[fullhash].css"
+            filename: "style.css"
         }),
         new CleanWebpackPlugin()
     ]
