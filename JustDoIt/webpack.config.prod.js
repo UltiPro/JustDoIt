@@ -1,6 +1,4 @@
 const path = require("path");
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const HtmlMinimizerPlugin = require("html-minimizer-webpack-plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
@@ -44,15 +42,6 @@ module.exports = {
         extensions: ['.ts', '.js']
     },
     plugins: [
-        new HtmlWebpackPlugin({
-            template: "./index.html",
-            filename: "bundle.[fullhash].html",
-            minify: {
-                removeAttributeQuotes: true,
-                collapseWhitespace: true,
-                removeComments: true
-            }
-        }),
         new MiniCssExtractPlugin({
             filename: "bundle.[fullhash].css"
         }),
