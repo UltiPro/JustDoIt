@@ -36,11 +36,18 @@ button {
     width: 100%;
     padding: 10px;
     color: var(--white);
+    background-color: var(--blue);
     font-weight: bold;
     border: none;
+    border-radius: 5px;
     box-shadow: 0 0 10px var(--box-shadow);
     cursor: pointer;
+    user-select: none;
     transition: all .2s ease-in-out;
+}
+
+button:hover {
+    background-color: var(--blue-light);
 }
 
 form button {
@@ -68,6 +75,7 @@ form button {
     width: 50px;
     height: 50px;
     margin-right: 10px;
+    user-select: none;
 }
 
 .todo-item-details {
@@ -122,12 +130,6 @@ form button {
     transform: translateX(-50%);
     max-width: 600px;
     margin: 10px auto;
-    background-color: var(--blue);
-    border-radius: 5px;
-}
-
-#add-btn:hover {
-    background-color: var(--blue-light);
 }
 
 #modal {
@@ -138,6 +140,7 @@ form button {
     width: 100%;
     height: 100%;
     background-color: var(--box-shadow-darker);
+    user-select: none;
 }
 
 .modal-content {
