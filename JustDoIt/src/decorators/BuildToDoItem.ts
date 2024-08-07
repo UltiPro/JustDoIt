@@ -2,6 +2,7 @@ import ToDoList from "../models/ToDoList";
 import { ToDoType } from "../enums/ToDoType";
 import IIndexable from "../interfaces/IIndexable";
 import { EditForm } from "../utils/FormModal";
+import ToDoItem from "../models/ToDoItem";
 
 const toDoContainer: HTMLDivElement = document.getElementById("todo-container")! as HTMLDivElement;
 const toDoItemTemplate: HTMLTemplateElement = document.getElementById("todo-item-template")! as HTMLTemplateElement;
@@ -23,16 +24,16 @@ export default function BuildToDoItem() {
                 this._imageElement = clonedDiv.querySelector(".todo-item-icon")! as HTMLImageElement;
                 this._titleElement = clonedDiv.querySelector(".todo-item-details_title")! as HTMLHeadingElement;
                 this._descriptionElement = clonedDiv.querySelector(".todo-item-details_description")! as HTMLParagraphElement;
-                this.SetData(args[2], args[0], args[1]);
+                this.SetData(args[0], args[1], args[2]);
 
                 (clonedDiv.querySelector(".edit-btn")! as HTMLButtonElement).addEventListener("click", async (): Promise<void> => {
-                    const formData: FormData | null = await EditForm();
+                    const formData: FormData | null = await EditForm(this as unknown as ToDoItem);
                     if (formData == null) return;
                     const title: string = formData.get("todo-form-title")! as string;
                     const description: string = formData.get("todo-form-description")! as string;
                     const toDoType: ToDoType = +formData.get("todo-form-icon")! as ToDoType;
                     ToDoList.Instance.Edit(this._id, title, description, toDoType);
-                    this.SetData(toDoType, title, description);
+                    this.SetData(title, description, toDoType);
                 });
 
                 (clonedDiv.querySelector(".delete-btn")! as HTMLButtonElement).addEventListener("click", (): void => {
@@ -44,8 +45,8 @@ export default function BuildToDoItem() {
                 this._ = toDoContainer.querySelector("div:last-child")! as HTMLDivElement;
             }
 
-            private SetData(img?: number, title?: string, description?: string): void {
-                if (img || img === 0) this._imageElement.src = `./../../img/${img}.png`;
+            private SetData(title?: string, description?: string, toDoType?: ToDoType): void {
+                if (toDoType || toDoType === 0) this._imageElement.src = `./../../img/${toDoType}.png`;
                 if (title) this._titleElement.textContent = title;
                 if (description) this._descriptionElement.textContent = description;
             }
