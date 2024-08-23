@@ -2,7 +2,7 @@
   "name": "justdoit",
   "version": "1.0.0",
   "description": "JustDoIt created by Patryk 'UltiPro' Wójtowicz using TypeScript and Webpack.",
-  "main": "./dist/bundle.main.js",
+  "main": "./dist/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server",
