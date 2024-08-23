@@ -38,11 +38,11 @@ export default function BuildToDoItem() {
 
                 (clonedDiv.querySelector(".delete-btn")! as HTMLButtonElement).addEventListener("click", (): void => {
                     ToDoList.Instance.Delete(this._id);
-                    toDoContainer.removeChild(this._);
+                    this._.parentElement?.removeChild(this._);
                 });
 
                 toDoContainer.appendChild(clonedDiv);
-                this._ = toDoContainer.querySelector("div:last-child")! as HTMLDivElement;
+                this._ = toDoContainer.querySelector(".todo-item:last-child")! as HTMLDivElement;
             }
 
             private SetData(title?: string, description?: string, toDoType?: ToDoType): void {
