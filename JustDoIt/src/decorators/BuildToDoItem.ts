@@ -38,7 +38,7 @@ export default function BuildToDoItem() {
 
                 (clonedDiv.querySelector(".delete-btn")! as HTMLButtonElement).addEventListener("click", (): void => {
                     ToDoList.Instance.Delete(this._id);
-                    this._.parentElement?.removeChild(this._);
+                    toDoContainer.removeChild(this._);
                 });
 
                 toDoContainer.appendChild(clonedDiv);
