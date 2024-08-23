@@ -4,5 +4,6 @@ export type ToDoItemTyped = {
     _id: number,
     _title: string,
     _description: string,
-    _toDoType: ToDoType
+    _toDoType: ToDoType,
+    _date: Date
 }
