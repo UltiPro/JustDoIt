@@ -5,5 +5,5 @@ export type ToDoItemTyped = {
     _title: string,
     _description: string,
     _toDoType: ToDoType,
-    _date: Date
+    _date: number
 }

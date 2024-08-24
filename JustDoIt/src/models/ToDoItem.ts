@@ -2,18 +2,21 @@ import BuildToDoItem from "../decorators/BuildToDoItem";
 import IIndexable from "../interfaces/IIndexable";
 import ToDoList from "./ToDoList";
 import { ToDoType } from "../enums/ToDoType";
+import IDateable from "../interfaces/IDateable";
 
 @BuildToDoItem()
-export default class ToDoItem implements IIndexable {
+export default class ToDoItem implements IIndexable, IDateable {
     _id: number;
+    _date: Date;
     private _title: string;
     private _description: string;
     private _toDoType: ToDoType;
 
     constructor(_title: string, _description: string, _toDoType: ToDoType);
-    constructor(_title: string, _description: string, _toDoType: ToDoType, _id: number);
-    constructor(_title: string, _description: string, _toDoType: ToDoType, _id?: number) {
+    constructor(_title: string, _description: string, _toDoType: ToDoType, _id: number, _date: Date);
+    constructor(_title: string, _description: string, _toDoType: ToDoType, _id?: number, _date?: Date) {
         this._id = _id ?? ToDoList.Instance.GenerateId();
+        this._date = _date ?? new Date();
         this._title = _title;
         this._description = _description;
         this._toDoType = _toDoType;
