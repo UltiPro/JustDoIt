@@ -64,6 +64,10 @@ export default function BuildToDoItem() {
 
             public dragStartHandler(event: DragEvent): void {
                 toDoItemDivDragged = event.target as HTMLDivElement;
+                toDoContainer.querySelectorAll(".todo-item").forEach(toDoItemDivElement => {
+                    if (this._ === toDoItemDivElement) return;
+                    toDoItemDivElement.classList.add("todo-item-dragover_default");
+                });
             }
 
             public dropHandler(event: DragEvent): void {
@@ -75,11 +79,14 @@ export default function BuildToDoItem() {
 
             public dragEndHandler(_: DragEvent): void {
                 toDoItemDivDragged = null;
-                this._.classList.remove("todo-item-dragover");
+                toDoContainer.querySelectorAll(".todo-item").forEach(toDoItemDivElement => {
+                    toDoItemDivElement.classList.remove("todo-item-dragover_default", "todo-item-dragover");
+                });
             }
 
             public dragOverHandler(event: DragEvent): void {
                 event.preventDefault();
+                if (this._ === toDoItemDivDragged) return;
                 this._.classList.add("todo-item-dragover");
             }
 
