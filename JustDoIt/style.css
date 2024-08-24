@@ -68,7 +68,12 @@ form button {
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
+    border-top: 3px solid transparent;
     box-shadow: 0 0 10px var(--box-shadow);
+}
+
+.todo-item-dragover {
+    border-top-color: var(--red-light);
 }
 
 .todo-item-icon {
@@ -95,7 +100,7 @@ form button {
     text-align: justify;
 }
 
-.todo-item-details_datetime {
+.todo-item-details_date {
     margin-top: 0.5rem;
     color: var(--grey);
     font-family: monospace;
