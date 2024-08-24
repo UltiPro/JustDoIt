@@ -90,8 +90,19 @@ form button {
 }
 
 .todo-item-details_description {
-    margin-top: 5px;
+    margin-top: 0.25rem;
     color: var(--grey);
+    text-align: justify;
+}
+
+.todo-item-details_datetime {
+    margin-top: 0.5rem;
+    color: var(--grey);
+    font-family: monospace;
+    font-style: italic;
+    text-decoration: overline;
+    text-decoration-color: var(--black);
+    text-decoration-thickness: 2px;
 }
 
 .todo-item-actions {
@@ -152,7 +163,7 @@ form button {
     background-color: var(--white);
     border: 2px solid var(--black);
     border-radius: 10px;
-    box-shadow: -20px -20px 3px var(--box-shadow-dark);
+    box-shadow: -10px -10px 3px var(--box-shadow-dark);
 }
 
 #close-btn {

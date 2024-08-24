@@ -6,16 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JustDoIt</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <!-- Comment this before production build -->
     <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
     <template id="todo-item-template">
         <div class="todo-item">
-            <img class="todo-item-icon">
+            <img class="todo-item-icon" src="./img/0.png">
             <div class="todo-item-details">
                 <h3 class="todo-item-details_title">Title</h3>
                 <p class="todo-item-details_description">Description</p>
+                <p class="todo-item-details_datetime">DD.MM.YYYY HH:mm:ss</p>
             </div>
             <div class="todo-item-actions">
                 <button class="edit-btn">Edit</button>
@@ -35,30 +37,29 @@
             <br />
             <form id="todo-form">
                 <div class="form-group">
-                    <input type="input" class="form-group-field" placeholder="Title" id="todo-form-title" minlength="3"
-                        maxlength="64" required />
+                    <input type="text" class="form-group-field" placeholder="Title" name="todo-form-title"
+                        id="todo-form-title" minlength="3" maxlength="64" required />
                     <label for="todo-form-title" class="form-group-label">Title</label>
                 </div>
                 <div class="form-group">
-                    <input type="input" class="form-group-field" placeholder="Description" id="todo-form-description"
-                        minlength="1" maxlength="256" required />
+                    <input type="text" class="form-group-field" placeholder="Description" name="todo-form-description"
+                        id="todo-form-description" minlength="0" maxlength="256" required />
                     <label for="todo-form-description" class="form-group-label">Description</label>
                 </div>
                 <div class="form-icon-options">
-                    <input type="radio" id="todo-form-icon-other" name="todo-form-icon" value="other.png" checked
-                        required>
-                    <label for="todo-form-icon-other"><img src="./img/other.png" alt="other.png"></label>
+                    <input type="radio" id="todo-form-icon-0" name="todo-form-icon" value="0" checked>
+                    <label for="todo-form-icon-0"><img src="./img/0.png" alt="0.png"></label>
 
-                    <input type="radio" id="todo-form-icon-1" name="todo-form-icon" value="1.png">
+                    <input type="radio" id="todo-form-icon-1" name="todo-form-icon" value="1">
                     <label for="todo-form-icon-1"><img src="./img/1.png" alt="1.png"></label>
 
-                    <input type="radio" id="todo-form-icon-2" name="todo-form-icon" value="2.png">
+                    <input type="radio" id="todo-form-icon-2" name="todo-form-icon" value="2">
                     <label for="todo-form-icon-2"><img src="./img/2.png" alt="2.png"></label>
 
-                    <input type="radio" id="todo-form-icon-3" name="todo-form-icon" value="3.png">
+                    <input type="radio" id="todo-form-icon-3" name="todo-form-icon" value="3">
                     <label for="todo-form-icon-3"><img src="./img/3.png" alt="3.png"></label>
 
-                    <input type="radio" id="todo-form-icon-4" name="todo-form-icon" value="4.png">
+                    <input type="radio" id="todo-form-icon-4" name="todo-form-icon" value="4">
                     <label for="todo-form-icon-4"><img src="./img/4.png" alt="4.png"></label>
                 </div>
                 <button type="submit">Add</button>
@@ -67,6 +68,7 @@
     </div>
 
 </body>
+<!-- Comment this before production build -->
 <script type="module" src="./out/bundle.js"></script>
 
 </html>
