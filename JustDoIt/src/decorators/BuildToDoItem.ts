@@ -1,6 +1,7 @@
 import ToDoList from "../models/ToDoList";
 import { ToDoType } from "../enums/ToDoType";
 import IIndexable from "../interfaces/IIndexable";
+import IDateable from "../interfaces/IDateable";
 import { EditForm } from "../utils/FormModal";
 import ToDoItem from "../models/ToDoItem";
 
@@ -9,12 +10,13 @@ const toDoItemTemplate: HTMLTemplateElement = document.getElementById("todo-item
 
 export default function BuildToDoItem() {
     return function <T extends { new(...args: any[]): {} }>(originalConstructor: T) {
-        return class extends originalConstructor implements IIndexable {
+        return class extends originalConstructor implements IIndexable, IDateable {
             private _: HTMLDivElement;
             private _imageElement: HTMLImageElement;
             private _titleElement: HTMLHeadingElement;
             private _descriptionElement: HTMLParagraphElement;
             _id: number;
+            _date!: Date;
 
             constructor(...args: any[]) {
                 super(...args);
@@ -24,6 +26,7 @@ export default function BuildToDoItem() {
                 this._imageElement = clonedDiv.querySelector(".todo-item-icon")! as HTMLImageElement;
                 this._titleElement = clonedDiv.querySelector(".todo-item-details_title")! as HTMLHeadingElement;
                 this._descriptionElement = clonedDiv.querySelector(".todo-item-details_description")! as HTMLParagraphElement;
+                (clonedDiv.querySelector(".todo-item-details_date")! as HTMLParagraphElement).textContent = `${this._date.toLocaleDateString()} ${this._date.toLocaleTimeString()}`;
                 this.SetData(args[0], args[1], args[2]);
 
                 (clonedDiv.querySelector(".edit-btn")! as HTMLButtonElement).addEventListener("click", async (): Promise<void> => {
