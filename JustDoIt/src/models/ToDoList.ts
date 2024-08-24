@@ -63,6 +63,11 @@ export default class ToDoList implements IStorage<ToDoItem> {
     }
 
     public GenerateId(): number {
-        return this.list.length === 0 ? 0 : this.list[this.list.length - 1].Id + 1;
+        if (this.list.length === 0) return 0;
+        let highestId = 0;
+        this.list.forEach((toDoItem: ToDoItem) => {
+            if (toDoItem.Id > highestId) highestId = toDoItem.Id;
+        });
+        return highestId + 1;
     }
 }
