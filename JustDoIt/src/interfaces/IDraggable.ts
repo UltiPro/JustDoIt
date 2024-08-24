@@ -1,4 +1,4 @@
-export interface IDraggable {
+export default interface IDraggable {
     dragStartHandler(event: DragEvent): void;
     dropHandler(event: DragEvent): void;
     dragEndHandler(event: DragEvent): void;

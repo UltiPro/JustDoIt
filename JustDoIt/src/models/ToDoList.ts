@@ -53,6 +53,15 @@ export default class ToDoList implements IStorage<ToDoItem> {
         this.Save();
     }
 
+    public RelocateObjById(objId: number, toObjId: number): void {
+        if (objId === toObjId) return;
+        const toDoItemArrayId: number = this.list.findIndex((toDoItem: ToDoItem) => toDoItem.Id == objId);
+        const toDoItemToArrayId: number = this.list.findIndex((toDoItem: ToDoItem) => toDoItem.Id == toObjId);
+        if (toDoItemArrayId < 0 || toDoItemToArrayId < 0) return;
+        this.list.splice(toDoItemArrayId > toDoItemToArrayId ? toDoItemToArrayId : toDoItemToArrayId - 1, 0, this.list.splice(toDoItemArrayId, 1)[0]);
+        this.Save();
+    }
+
     public GenerateId(): number {
         return this.list.length === 0 ? 0 : this.list[this.list.length - 1].Id + 1;
     }
