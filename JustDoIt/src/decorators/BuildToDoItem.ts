@@ -2,15 +2,17 @@ import ToDoList from "../models/ToDoList";
 import { ToDoType } from "../enums/ToDoType";
 import IIndexable from "../interfaces/IIndexable";
 import IDateable from "../interfaces/IDateable";
+import IDraggable from "../interfaces/IDraggable";
 import { EditForm } from "../utils/FormModal";
 import ToDoItem from "../models/ToDoItem";
 
 const toDoContainer: HTMLDivElement = document.getElementById("todo-container")! as HTMLDivElement;
 const toDoItemTemplate: HTMLTemplateElement = document.getElementById("todo-item-template")! as HTMLTemplateElement;
+let toDoItemDivDragged: HTMLDivElement | null = null;
 
 export default function BuildToDoItem() {
     return function <T extends { new(...args: any[]): {} }>(originalConstructor: T) {
-        return class extends originalConstructor implements IIndexable, IDateable {
+        return class extends originalConstructor implements IIndexable, IDateable, IDraggable {
             private _: HTMLDivElement;
             private _imageElement: HTMLImageElement;
             private _titleElement: HTMLHeadingElement;
@@ -46,12 +48,43 @@ export default function BuildToDoItem() {
 
                 toDoContainer.appendChild(clonedDiv);
                 this._ = toDoContainer.querySelector(".todo-item:last-child")! as HTMLDivElement;
+                this._.setAttribute("data-item-id", this._id.toString());
+                this._.addEventListener("dragstart", this.dragStartHandler.bind(this));
+                this._.addEventListener("drop", this.dropHandler.bind(this));
+                this._.addEventListener("dragend", this.dragEndHandler.bind(this));
+                this._.addEventListener("dragover", this.dragOverHandler.bind(this));
+                this._.addEventListener("dragleave", this.dragLeaveHandler.bind(this));
             }
 
             private SetData(title?: string, description?: string, toDoType?: ToDoType): void {
                 if (toDoType || toDoType === 0) this._imageElement.src = `./../../img/${toDoType}.png`;
                 if (title) this._titleElement.textContent = title;
                 if (description) this._descriptionElement.textContent = description;
+            }
+
+            public dragStartHandler(event: DragEvent): void {
+                toDoItemDivDragged = event.target as HTMLDivElement;
+            }
+
+            public dropHandler(event: DragEvent): void {
+                event.preventDefault();
+                if (this._ === toDoItemDivDragged) return;
+                toDoContainer.insertBefore(toDoItemDivDragged!, this._);
+                ToDoList.Instance.RelocateObjById(toDoItemDivDragged!.getAttribute("data-item-id") as unknown as number, this._.getAttribute("data-item-id") as unknown as number);
+            }
+
+            public dragEndHandler(_: DragEvent): void {
+                toDoItemDivDragged = null;
+                this._.classList.remove("todo-item-dragover");
+            }
+
+            public dragOverHandler(event: DragEvent): void {
+                event.preventDefault();
+                this._.classList.add("todo-item-dragover");
+            }
+
+            public dragLeaveHandler(_: DragEvent): void {
+                this._.classList.remove("todo-item-dragover");
             }
         };
     };
