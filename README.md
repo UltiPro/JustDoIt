@@ -1,7 +1,7 @@
 # JustDoIt
 JustDoIt created by Patryk 'UltiPro' Wójtowicz using TypeScript and Webpack.
 
-opis
+JustDoIt is an application written in TypeScript using Webpack. It includes the ability to add, edit, delete, and change the order of tasks. Tasks contain information such as the title, description, and time when the task was added. Additionally, each task can be framed with an icon specifying what activity it belongs to.
 
 # Usage
 
