@@ -57,7 +57,7 @@ export default function BuildToDoItem() {
             }
 
             private SetData(title?: string, description?: string, toDoType?: ToDoType): void {
-                if (toDoType || toDoType === 0) this._imageElement.src = `./../../img/${toDoType}.png`;
+                if (toDoType || toDoType === 0) this._imageElement.src = `./img/${toDoType}.png`;
                 if (title) this._titleElement.textContent = title;
                 if (description) this._descriptionElement.textContent = description;
             }

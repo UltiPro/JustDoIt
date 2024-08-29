@@ -1,19 +1,29 @@
 const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-    mode: 'development',
+    mode: "development",
     entry: "./src/app.ts",
     output: {
-        filename: "bundle.js",
-        path: path.resolve(__dirname, 'out'),
-        publicPath: '/out/'
+        filename: "[name].bundle.js",
+        path: path.resolve(__dirname, "dist")
     },
-    devtool: 'inline-source-map',
+    plugins: [
+        new HtmlWebpackPlugin({ template: "./index.html" })
+    ],
     module: {
         rules: [
             {
+                test: /\.css$/,
+                use: [
+                    "style-loader",
+                    "css-loader"
+                ],
+                exclude: /node_modules/
+            },
+            {
                 test: /\.ts$/,
-                use: 'ts-loader',
+                use: "ts-loader",
                 exclude: /node_modules/
             }
         ]
@@ -21,11 +31,12 @@ module.exports = {
     devServer: {
         static: [
             {
-                directory: path.join(__dirname),
-            },
-        ],
+                directory: path.join(__dirname)
+            }
+        ]
     },
+    devtool: "inline-source-map",
     resolve: {
-        extensions: ['.ts', '.js']
+        extensions: [".ts", ".js"]
     }
 };
